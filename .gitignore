@@ -2,7 +2,7 @@
 
 *.fits
 
-chache/
+cache/
 uparm/
 iraf/
 pyraf/
