@@ -1,0 +1,8 @@
+*ipynb_checkpoints
+
+*.fits
+
+chache/
+uparm/
+iraf/
+pyraf/
