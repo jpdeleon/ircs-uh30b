@@ -1,8 +1,11 @@
-*ipynb_checkpoints
+#misc 
+*.ipynb_checkpoints
 
+#fits
 *.fits
 
-cache/
-uparm/
-iraf/
-pyraf/
+#folders
+/cache
+/pyraf
+/iraf
+/uparm

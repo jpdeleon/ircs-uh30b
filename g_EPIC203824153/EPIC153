@@ -1,0 +1,154 @@
+#!/usr/bin/env python
+'''
+*153 has only 3 dithers;
+nframes=2 and not taken after the other!
+check summary.txt
+'''
+import glob
+try:
+  from astropy.io import fits as pf
+except:
+  import pyfits as pf
+
+ch1=glob.glob('IRCA*fg_ch1.fits')
+ch1.sort()
+ch2=glob.glob('IRCA*fg_ch2.fits')
+ch2.sort()
+
+nframes = 3
+wpangle = 4
+ndither = 3
+
+print('CHANNEL 1')
+print('NFRAME 1')
+#1-2
+for idx,i in enumerate(ch1[:wpangle]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[idx+wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[idx+wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    hdr1['history'] = comment
+    pf.writeto(i[:-9]+'s_ch1.fits',im,hdr1)
+#2-3
+for idx,i in enumerate(ch1[wpangle:2*wpangle]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[idx+2*wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[idx+2*wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch1.fits',im,hdr1)
+#3-2
+for idx,i in enumerate(ch1[2*wpangle:3*wpangle]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch1.fits',im,hdr1)
+
+print('NFRAME 2')
+#1-2
+for idx,i in enumerate(ch1[12:16]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[idx+wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[idx+wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch1.fits',im,hdr1)
+#2-3
+for idx,i in enumerate(ch1[16:20]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[idx+2*wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[idx+2*wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch1.fits',im,hdr1)
+#3-2
+for idx,i in enumerate(ch1[20:24]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[idx+wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[idx+wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch1.fits',im,hdr1)
+
+#----------------
+
+print('CHANNEL 2')
+print('NFRAME 1')
+#1-2
+for idx,i in enumerate(ch2[:wpangle]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch2[idx+wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch2[idx+wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    hdr1['history'] = comment
+    pf.writeto(i[:-9]+'s_ch2.fits',im,hdr1)
+#2-3
+for idx,i in enumerate(ch2[wpangle:2*wpangle]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch2[idx+2*wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch2[idx+2*wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch2.fits',im,hdr1)
+#3-2
+for idx,i in enumerate(ch2[2*wpangle:3*wpangle]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch2[wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch2[wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch2.fits',im,hdr1)
+
+print('NFRAME 2')
+#1-2
+for idx,i in enumerate(ch2[12:16]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch2[idx+wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch2[idx+wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch2.fits',im,hdr1)
+#2-3
+for idx,i in enumerate(ch2[16:20]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch2[idx+2*wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch2[idx+2*wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch2.fits',im,hdr1)
+#3-2
+for idx,i in enumerate(ch1[20:24]):
+    hdr1 = pf.getheader(i)
+    hdr2 = pf.getheader(ch1[idx+wpangle])
+    img1 = pf.getdata(i)
+    img2 = pf.getdata(ch1[idx+wpangle])
+    im = img1-img2
+    comment = '{0}-{1}'.format(hdr1['I_DTHPOS'], hdr2['I_DTHPOS'])
+    print(comment)
+    pf.writeto(i[:-9]+'s_ch2.fits',im,hdr1)
